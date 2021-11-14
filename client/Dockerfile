@@ -7,6 +7,9 @@ RUN npm install
 COPY ./ ./
 USER node
 
+RUN mkdir build && chmod -R 777 ./build
+
+
 RUN npm run build
 
 FROM nginx:1.21.3-alpine
