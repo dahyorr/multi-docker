@@ -1,0 +1,18 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t dahyor/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run dahyor/react-test npm test -- --watchAll=false
+
+after_success:
+  - docker build -t dahyor/multi-client ./client
+  - docker build -t dahyor/multi-server ./server
+  - docker build -t dahyor/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push dahyor/multi-client
+  - docker push dahyor/multi-server
+  - docker push dahyor/multi-worker
+  # - docker build -t dahyor/multi-nginx ./server
