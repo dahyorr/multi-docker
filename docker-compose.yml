@@ -9,7 +9,7 @@ services:
     image: dahyor/multi-client
 
   worker:
-    image: dahyor/multi-client
+    image: dahyor/multi-worker
     env_file:
       - .env
   
