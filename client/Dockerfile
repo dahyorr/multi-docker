@@ -6,6 +6,7 @@ RUN npm install
 
 COPY ./ ./
 
+RUN mkdir /app/node_modules/.cache && chmod -R 777 ./node_modules/.cache
 RUN mkdir build && chmod -R 777 ./build
 
 USER node

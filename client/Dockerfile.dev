@@ -5,7 +5,7 @@ COPY ./package.json ./
 RUN npm install
 
 COPY ./ ./
-RUN mkdir /app/node_modules/.cache && chmod -R 777 node_modules/.cache
+RUN mkdir /app/node_modules/.cache && chmod -R 777 ./node_modules/.cache
 
 USER node
 
